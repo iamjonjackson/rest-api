@@ -19,8 +19,7 @@ class Items
         return $result;	
     }
 
-    function create(){
-
+    function create() {
         $stmt = $this->conn->prepare("INSERT INTO items (`name`, `description`, `price`, `category_id`, `created`) VALUES (?,?,?,?,?)");
         
         $this->name = htmlspecialchars(strip_tags($this->name));
@@ -31,11 +30,9 @@ class Items
         
         $stmt->bind_param("ssiis", $this->name, $this->description, $this->price, $this->category_id, $this->created);
         
-        if($stmt->execute()){
-
+        if($stmt->execute()) {
             return true;
         }
-
         return false;		 
     }
     
